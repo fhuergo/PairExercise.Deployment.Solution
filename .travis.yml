@@ -16,12 +16,12 @@ install:
 before_script:
   - psql -c 'create database "dakota-fsa-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 
-# before_deploy:
-#   - npm run build-client # make the bundle
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE
+before_deploy:
+  - npm run build-client # make the bundle
+  - rm -rf node_modules # omit from the tarball, since we skip cleanup
+deploy:
+  skip_cleanup: true # prevents travis from deleting the build
+  provider: heroku
+  app: dakota-fsa # see README
+  api_key:
+    secure: "ybUmIioCZPDw6zWrMTUFGnhEpMpT3eyIahpSikse8SKoeiIHoFa7KETBCl1dhHY+txNtWwFFVjB6yogzL/xS6nBgGBq7TQlUTFwVchpigSXMA3Xm0C3sKJLhLgcDZmlTXLnWR6X+dq03h/p506QtwBPW1Mc7sG0kOKHorrADpCuJyUfS/cq98l1Bc+vWQAeJxtX/VPH+3BAVLfC5KkNrX0BGPEDnYcoxghMsBodbYTGSlzx2bSlYEnLlXU4CxzUUZYvnH9k4EDKRHMGLbDCvWvKQuiEXCWvMCdijDktairKklbXc2ns+dpAetbcxLDOilVvW1nb+b7qJv1IHYawIWtuyXSDgSqRFkODHv8WzbAKsPJ3RydiIHNUkrwZQDG3LCmOODbMTGq0ESmomRdFEGGhTsKDDBeeKPkzwpbjCIyAIKIUJex4N3fLX7FHU8CnHYdnN9M7NJfnc7bFKzJDV8CMsssXKA+9s/cDLr/42moya86L7r2ZT2yqWRcFEWnqgbt8GOibcvEdJ5o3dFeDrEaWJKx617sRlbFGc+6oOCnBuoq720WtHFXL82MN2JSssQ5GYpwP+EEXNDdk41Li+ZUst+ECaktO8fHKm39RZiRI2uDwmI81jJDS7+S6gbSTKA9TUDcQUssuWL1GWpAhjmVq5CK/UjfMJioa6M353v5Y="
